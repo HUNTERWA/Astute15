@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/gradien"
+    android:padding="3dp">
+
+    <TextView
+        android:id="@+id/welQue"
+        style="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000000"
+        android:text="Welcome my dear friend. How are you?"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textColorHighlight="#ffffff"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.217" />
+
+    <Button
+        android:id="@+id/veryGood"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple"
+        android:shadowColor="#000000"
+        android:text="Very Good"
+        android:textColor="#ffffff"
+        android:onClick="vgMethod"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
+
+    <Button
+        android:id="@+id/good"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple"
+        android:shadowColor="#000000"
+        android:text="Good"
+        android:textColor="#ffffff"
+        android:onClick="gMethod"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.755" />
+
+    <Button
+        android:id="@+id/notSoGood"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple"
+        android:shadowColor="#000000"
+        android:text="Not so good"
+        android:textColor="#ffffff"
+        android:onClick="nsgMethod"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+</android.support.constraint.ConstraintLayout>

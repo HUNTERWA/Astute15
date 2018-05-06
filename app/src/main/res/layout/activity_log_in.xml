@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogIn"
+    android:background="@drawable/gr"
+    android:padding="7dp"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/emID"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:hint="Enter email Id"
+            android:inputType="textEmailAddress"
+            android:shadowColor="@color/black"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="#D3D3D3"
+            android:padding="3dp"
+            android:layout_gravity="center"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:shadowColor="@color/black"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:layout_margin="5dp"
+            android:textColorHint="#D3D3D3"
+            android:padding="3dp"
+            android:layout_gravity="center"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/logIn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple"
+        android:shadowColor="@color/black"
+        android:text="Sign in"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:layout_margin="7dp"
+        android:layout_gravity="center"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:padding="5dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/newUser"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/black"
+        android:text="No account yet? Create one."
+        android:textAlignment="center"
+        android:textColor="#3a7bd5"
+        android:textColorHighlight="#3a7bd5"
+        android:textColorLink="#3a7bd5"
+        android:textSize="19sp"
+        android:layout_margin="7dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
