@@ -37,6 +37,7 @@ public class VideoList extends AppCompatActivity
     public String[] sD;//=new String[jsonArray.length()];
     public String[] lD;//=new String[jsonArray.length()];
     public String[] iP;//=new String[jsonArray.length()];
+    public String[] isPaid;
 
     //ImageView imageView1;//,imageView2;//,imageView3,imageView4,imageView5,imageView6;
 
@@ -81,6 +82,7 @@ public class VideoList extends AppCompatActivity
                         sD=new String[jsonArray.length()];
                         lD=new String[jsonArray.length()];
                         iP=new String[jsonArray.length()];
+                        isPaid=new String[jsonArray.length()];
 
                         for(int j=0;j<jsonArray.length();j++)
                         {
@@ -90,11 +92,14 @@ public class VideoList extends AppCompatActivity
                             sD[j]=jsonObject.getString("shortDescription");
                             lD[j]=jsonObject.getString("longDescription");
                             iP[j]=jsonObject.getString("imagePath");
+                            isPaid[j]=jsonObject.getString("status");
                             Log.d("Url Data "+j,urL[j]);
                             Log.d("Name Data "+j,namE[j]);
                             Log.d("Short D "+j,sD[j]);
                             Log.d("Long D "+j,lD[j]);
                             Log.d("Image path "+j,iP[j]);
+                            Log.d("isPaid "+j,isPaid[j]);
+
                         }
                     }
                     k=iP.length;
@@ -116,12 +121,20 @@ public class VideoList extends AppCompatActivity
                     {
                         for (l=0;l<jsonArray.length();l++)
                         {
-                            if (position==l)
+                            if (position==l&&isPaid[l].equalsIgnoreCase("F"))
                             {
                                 Intent intent=new Intent(VideoList.this,VideoPlayer.class);
                                 intent.putExtra("position",l);
                                 startActivity(intent);
                             }
+
+                            if (position==l&&isPaid[l].equalsIgnoreCase("P"))
+                            {
+                                Intent intent=new Intent(VideoList.this,ForPaidVideo.class);
+                                intent.putExtra("position",l);
+                                startActivity(intent);
+                            }
+
                         }
                     }
                 });

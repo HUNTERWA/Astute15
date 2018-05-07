@@ -16,8 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,22 +26,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Good"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LogIn"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NotSoGood"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Questions"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignUp"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Start"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".VeryGood"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Good"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LogIn"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NotSoGood"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Questions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUp"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VeryGood"
+            android:screenOrientation="portrait" />
         <activity android:name=".VideoList" />
-        <activity android:name=".VideoPlayer"></activity>
+        <activity android:name=".VideoPlayer" />
+        <activity android:name=".ForPaidVideo"></activity>
     </application>
 
 </manifest>
