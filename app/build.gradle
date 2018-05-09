@@ -3,11 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.ats.rohit.astute"
+        applicationId "com.ats.rohit.astutes"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -72,4 +72,4 @@ dependencies {
     compile 'com.google.firebase:firebase-core:12.0.1'
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'  this will need google-services.json which we can generate from firebase.

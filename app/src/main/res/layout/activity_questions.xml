@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Questions"
+    tools:context="com.ats.rohit.astutes.Questions"
     android:background="@drawable/customback"
     android:padding="3dp">
 

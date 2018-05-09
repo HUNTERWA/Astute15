@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/customground"
     android:orientation="vertical"
-    tools:context=".ForPaidVideo">
+    tools:context="com.ats.rohit.astutes.ForPaidVideo">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youTubePlayerView"

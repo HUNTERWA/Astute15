@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotSoGood"
+    tools:context="com.ats.rohit.astutes.NotSoGood"
     android:background="@drawable/gra"
     android:padding="3dp">
 
