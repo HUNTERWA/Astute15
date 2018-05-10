@@ -2,10 +2,14 @@ package com.ats.rohit.astutes;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,7 +34,9 @@ import org.json.JSONObject;
 public class VideoList extends AppCompatActivity
 {
     public int k=0,l=0;
-    ListView listView;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
     JSONArray jsonArray;
     JSONObject jsonObject;
     public String[] urL;//=new String[jsonArray.length()];
@@ -40,20 +46,13 @@ public class VideoList extends AppCompatActivity
     public String[] iP;//=new String[jsonArray.length()];
     public String[] isPaid;
 
-    //ImageView imageView1;//,imageView2;//,imageView3,imageView4,imageView5,imageView6;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_list);
 
-        listView=findViewById(R.id.listView);
-
         fetchData();
-
-        //CustomList customList=new CustomList();
-        //listView.setAdapter(customList);
 
     }
 
@@ -75,9 +74,6 @@ public class VideoList extends AppCompatActivity
                     jsonArray=response.getJSONArray("doc");
                     for(int i=0;i<jsonArray.length();i++)
                     {
-                        //JSONObject jsonObject=jsonArray.getJSONObject(i);
-
-
                         urL=new String[jsonArray.length()];
                         namE=new String[jsonArray.length()];
                         sD=new String[jsonArray.length()];
@@ -100,13 +96,19 @@ public class VideoList extends AppCompatActivity
                             Log.d("Long D "+j,lD[j]);
                             Log.d("Image path "+j,iP[j]);
                             Log.d("isPaid "+j,isPaid[j]);
-
                         }
                     }
                     k=iP.length;
                     Log.d("k:=>",""+k);
-                    CustomList customList=new CustomList();
-                    listView.setAdapter(customList);
+                    //CustomList customList=new CustomList();
+                    //listView.setAdapter(customList);
+                    RecyclerAdapter recyclerAdapter=new RecyclerAdapter();
+                    recyclerView=findViewById(R.id.recyclerView);
+                    layoutManager=new LinearLayoutManager(VideoList.this);
+                    recyclerView.setLayoutManager(layoutManager);
+
+                    adapter=new RecyclerAdapter();
+                    recyclerView.setAdapter(adapter);
                     Log.d("k=>",""+k);
 
                 }
@@ -115,30 +117,6 @@ public class VideoList extends AppCompatActivity
                     e.printStackTrace();
                 }
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-                {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-                    {
-                        for (l=0;l<jsonArray.length();l++)
-                        {
-                            if (position==l&&isPaid[l].equalsIgnoreCase("F"))
-                            {
-                                Intent intent=new Intent(VideoList.this,VideoPlayer.class);
-                                intent.putExtra("position",l);
-                                startActivity(intent);
-                            }
-
-                            if (position==l&&isPaid[l].equalsIgnoreCase("P"))
-                            {
-                                Intent intent=new Intent(VideoList.this,ForPaidVideo.class);
-                                intent.putExtra("position",l);
-                                startActivity(intent);
-                            }
-
-                        }
-                    }
-                });
             }
         }, new Response.ErrorListener()
         {
@@ -154,63 +132,70 @@ public class VideoList extends AppCompatActivity
         //listView.setAdapter(customList);
     }
 
-    class CustomList extends BaseAdapter
+    class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
     {
+        View views;
 
-        @Override
-        public int getCount()
+        class ViewHolder extends RecyclerView.ViewHolder
         {
-            Log.d("I am in Custom list",""+k);
-            return k;
-        }
 
-        @Override
-        public Object getItem(int position)
-        {
-            return null;
-        }
+            ImageView imageView;
+            TextView title;
+            TextView description;
 
-        @Override
-        public long getItemId(int position)
-        {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup parent)
-        {
-            convertView=getLayoutInflater().inflate(R.layout.customl,null);
-
-            ImageView imageView = convertView.findViewById(R.id.imageView);
-            Picasso.get().load(iP[i]).into(imageView);
-            Log.d("ImageAddress",iP[i]);
-
-            TextView title = convertView.findViewById(R.id.ttl);
-            title.setText(namE[i]);
-
-            TextView description = convertView.findViewById(R.id.description);
-            description.setText(sD[i]);
-
-
-            return convertView;
-        }
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        //super.onBackPressed();  this was causing instant closing.
-        AlertDialog.Builder adB=new AlertDialog.Builder(this);
-        adB.setMessage("Do you really want to exit?");
-        adB.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
+            public ViewHolder(View itemView)
             {
-                finish();
+                super(itemView);
+                imageView=itemView.findViewById(R.id.imageView);
+                title=itemView.findViewById(R.id.ttl);
+                description=itemView.findViewById(R.id.description);
+
+                itemView.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        int position=getAdapterPosition();
+                        if (isPaid[position].equalsIgnoreCase("F"))
+                        {
+                            Intent intent=new Intent(VideoList.this,VideoPlayer.class);
+                            intent.putExtra("position",position);
+                            startActivity(intent);
+                        }
+
+                        if (isPaid[position].equalsIgnoreCase("P"))
+                        {
+                             Intent intent=new Intent(VideoList.this,ForPaidVideo.class);
+                             intent.putExtra("position",position);
+                             startActivity(intent);
+                        }
+                    }
+                });
             }
-        });
-        adB.setNegativeButton("No",null);
-        adB.show();
+        }
+
+        @NonNull
+        @Override
+        public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
+        {
+            views= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.customl,viewGroup,false);
+            ViewHolder viewHolder=new ViewHolder(views);
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder viewHolder, int i)
+        {
+            viewHolder.title.setText(namE[i]);
+            viewHolder.description.setText(sD[i]);
+            //ImageView imageView = views.findViewById(R.id.imageView);
+            Picasso.get().load(iP[i]).into(viewHolder.imageView);
+        }
+
+        @Override
+        public int getItemCount()
+        {
+            return jsonArray.length();
+        }
     }
 }
