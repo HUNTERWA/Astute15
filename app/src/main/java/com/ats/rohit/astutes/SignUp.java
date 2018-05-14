@@ -1,6 +1,7 @@
 package com.ats.rohit.astutes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +22,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 //import com.ats.rohit.astute.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity
 {
+    SharedPreferences sharedPreferences;
     EditText name,passowrd,email;
     Button button;
     RadioGroup radioGroup;
@@ -44,12 +49,6 @@ public class SignUp extends AppCompatActivity
         radioGroup=findViewById(R.id.radioGroup);
         button=findViewById(R.id.signUp);
 
-        //spinner.setDrawingCacheBackgroundColor(getColor(R.color.colorPrimary));
-        //spinner.setBackgroundColor(getColor(R.color.colorPrimary));
-        //String gender= (String) spinner.getSelectedItem();
-        //Log.d("Selected item is",gender);
-
-
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -64,8 +63,6 @@ public class SignUp extends AppCompatActivity
         });
 
     }
-
-
 
     private void apiCalling()
     {
@@ -88,42 +85,44 @@ public class SignUp extends AppCompatActivity
         {
             Toast.makeText(getApplicationContext(),"All fields are mandatory",Toast.LENGTH_SHORT).show();
         }
+        else
+            {
+            stringRequest = new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>()
+            {
+                @Override
+                public void onResponse(String response)
+                {
+                    Toast.makeText(getApplicationContext(), "Sign up successfull", Toast.LENGTH_SHORT).show();
+                    Log.d("Responses:=>", response);
 
-        stringRequest=new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response)
+                    Intent intent = new Intent(SignUp.this, LogIn.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, new Response.ErrorListener()
             {
-                Toast.makeText(getApplicationContext(),"Sign up successfull",Toast.LENGTH_SHORT).show();
-                Log.d("Response is:=>",response);
-                Intent intent=new Intent(SignUp.this,Start.class);
-                startActivity(intent);
-                finish();
-            }
-        }, new Response.ErrorListener()
-        {
-            @Override
-            public void onErrorResponse(VolleyError error)
+                @Override
+                public void onErrorResponse(VolleyError error)
+                {
+                    //Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Log.d("Error is:=>", "" + error);
+                }
+            })
             {
-                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-                Log.d("Error is:=>",""+error);
-            }
-        })
-        {
-            @Override
-            protected Map<String,String>getParams()
-            {
-                Map<String,String> map=new HashMap<String, String>();
-                map.put("name",userName);
-                map.put("emailId",emailId);
-                map.put("gender",gender);
-                map.put("password",pass);
-                map.put("type",type);
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String> map = new HashMap<String, String>();
+                    map.put("name", userName);
+                    map.put("emailId", emailId);
+                    map.put("gender", gender);
+                    map.put("password", pass);
+                    map.put("type", type);
 
-                return map;
-            }
-        };
-        requestQueue.add(stringRequest);
+                    return map;
+                }
+            };
+            requestQueue.add(stringRequest);
+        }
     }
-
-
 }

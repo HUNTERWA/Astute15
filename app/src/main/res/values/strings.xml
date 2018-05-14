@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Astute</string>
+    <string name="facebook_app_id">2525381951020311</string>
+    <string name="fb_login_protocol_scheme">fb2525381951020311</string>
 </resources>

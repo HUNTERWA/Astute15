@@ -68,13 +68,21 @@
         android:layout_margin="7dp"
         android:layout_gravity="center"/>
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
         android:padding="5dp"
         android:layout_gravity="center"/>
+
+    <!--com.google.android.gms.common.SignInButton
+        android:id="@+id/signInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:padding="5dp"
+        android:layout_gravity="center"/-->
 
     <TextView
         android:id="@+id/newUser"
