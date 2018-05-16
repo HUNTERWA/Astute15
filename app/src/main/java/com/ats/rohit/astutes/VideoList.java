@@ -102,7 +102,7 @@ public class VideoList extends AppCompatActivity
                     Log.d("k:=>",""+k);
                     //CustomList customList=new CustomList();
                     //listView.setAdapter(customList);
-                    RecyclerAdapter recyclerAdapter=new RecyclerAdapter();
+                    //RecyclerAdapter recyclerAdapter=new RecyclerAdapter();
                     recyclerView=findViewById(R.id.recyclerView);
                     layoutManager=new LinearLayoutManager(VideoList.this);
                     recyclerView.setLayoutManager(layoutManager);
