@@ -138,7 +138,6 @@ public class VideoList extends AppCompatActivity
 
         class ViewHolder extends RecyclerView.ViewHolder
         {
-
             ImageView imageView;
             TextView title;
             TextView description;

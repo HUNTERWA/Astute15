@@ -74,7 +74,9 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
 
         callbackManager=CallbackManager.Factory.create();
         LoginButton loginButton=findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"));
+        //loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"));
+        loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
+
 
 
         emId=findViewById(R.id.emID);
@@ -192,7 +194,7 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
             //Picasso.with(this).load(profile_picture.toString).into(imageView);
             fEmailId=object.getString("email");
             Log.d("emailIs",fEmailId);
-            Log.d("birthDayIs",object.getString("birthday"));
+            Log.d("public_profile",object.getString("public_profile"));
             /*Log.d("nameIs",object.getString("first_name"));
             Log.d("lastNameIs",object.getString("last_name"));
             Log.d("Gender",object.getString("gender"));*/

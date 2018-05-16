@@ -35,7 +35,7 @@ public class SplashScreen extends AppCompatActivity
         tagLine=findViewById(R.id.tagLine);
         tagLine.animate().translationX(1000).setDuration(0);
 
-        //printKeyHash();  sha key for facebook login
+        printKeyHash();  //sha key for facebook login
 
         //Code for Main Text view
         Thread thread=new Thread()
@@ -90,7 +90,7 @@ public class SplashScreen extends AppCompatActivity
 
     }
 
-    /*private void printKeyHash()
+    private void printKeyHash()
     {
         try
         {
@@ -110,6 +110,6 @@ public class SplashScreen extends AppCompatActivity
         {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }
