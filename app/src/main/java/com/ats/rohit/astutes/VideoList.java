@@ -2,6 +2,7 @@ package com.ats.rohit.astutes;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,7 +55,45 @@ public class VideoList extends AppCompatActivity
         setContentView(R.layout.activity_video_list);
 
         fetchData();
+        logOut();
 
+    }
+
+    private void logOut()
+    {
+        Button button=findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(VideoList.this);
+                alertDialog.setMessage("Are you sure want to log out?");
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        SharedPreferences sharedPreferences;
+                        String fToken="", key="";
+                        sharedPreferences=getSharedPreferences("SignIn",MODE_PRIVATE);
+                        SharedPreferences.Editor editor= sharedPreferences.edit();
+                        editor.putString("fSignIn",fToken);
+                        editor.apply();
+
+                        sharedPreferences=getSharedPreferences("USER_INFO",MODE_PRIVATE);
+                        SharedPreferences.Editor edit=sharedPreferences.edit();
+                        edit.putString("TOKEN",key);
+                        edit.apply();
+
+                        Intent intent=new Intent(VideoList.this,MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                alertDialog.setNegativeButton("No",null);
+                alertDialog.show();
+            }
+        });
     }
 
     private void fetchData()
