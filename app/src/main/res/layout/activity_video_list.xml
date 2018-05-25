@@ -45,11 +45,10 @@
             android:text="Log Out "
             android:textColor="@color/white"
             android:shadowColor="@color/black"
+            android:background="#3F5EFB"
             android:textColorHighlight="@color/white"
-            android:background="@drawable/ripple"
-            android:padding="7dp"
             android:layout_gravity="end|center"
-            android:layout_marginLeft="111dp"/>
+            android:layout_marginLeft="120dp"/>
 
     </LinearLayout>
 

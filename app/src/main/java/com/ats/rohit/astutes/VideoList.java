@@ -88,6 +88,7 @@ public class VideoList extends AppCompatActivity
 
                         Intent intent=new Intent(VideoList.this,MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 alertDialog.setNegativeButton("No",null);

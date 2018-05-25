@@ -396,7 +396,10 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
                 protected Map<String,String> getParams()
                 {
                     Map<String,String> map=new HashMap<>();
-
+                    if(fEmailId==null)
+                    {
+                        fEmailId="no Email";
+                    }
                     map.put("name","null");
                     map.put("emailId",fEmailId);
                     map.put("gender","null");
