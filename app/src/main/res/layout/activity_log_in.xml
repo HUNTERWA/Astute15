@@ -26,7 +26,7 @@
             android:shadowColor="@color/black"
             android:textColor="@color/white"
             android:textColorHighlight="@color/white"
-            android:textColorHint="#D3D3D3"
+            android:textColorHint="#BDBDBD"
             android:padding="3dp"
             android:layout_gravity="center"/>
 
@@ -49,7 +49,7 @@
             android:textColor="@color/white"
             android:textColorHighlight="@color/white"
             android:layout_margin="5dp"
-            android:textColorHint="#D3D3D3"
+            android:textColorHint="#BDBDBD"
             android:padding="3dp"
             android:layout_gravity="center"/>
 

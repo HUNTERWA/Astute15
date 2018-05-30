@@ -166,14 +166,17 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
             @Override
             public void onClick(View v)
             {
-                Log.e("User name is",""+emId.getText());
+                String emailId= String.valueOf(emId.getText());
+                Log.e("User name is",""+emailId);
                 Log.e("Password is",""+password.getText());
-                /*if(emId.length()==0||password.length()==0)
+                if(emailId.contains("@")&&password.length()!=0)
+                {
+                    apiForLogIn();
+                }
+                else
                 {
                     Toast.makeText(getApplicationContext(),"Enter valid credentials",Toast.LENGTH_LONG).show();
-                }*/
-
-                apiForLogIn();
+                }
             }
         });
 

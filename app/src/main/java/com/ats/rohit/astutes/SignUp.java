@@ -34,7 +34,8 @@ public class SignUp extends AppCompatActivity
     EditText name,passowrd,email;
     Button button;
     RadioGroup radioGroup;
-    RadioButton radioButton;
+    RadioButton radioButtonMale;
+    RadioButton radioButtonFemale;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -48,15 +49,18 @@ public class SignUp extends AppCompatActivity
         email=findViewById(R.id.email);
         radioGroup=findViewById(R.id.radioGroup);
         button=findViewById(R.id.signUp);
+        radioButtonMale=findViewById(R.id.male);
+        radioButtonFemale=findViewById(R.id.female);
 
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                int check=radioGroup.getCheckedRadioButtonId();
-                radioButton=findViewById(check);
+                //int check=radioGroup.getCheckedRadioButtonId();
+                //radioButton=findViewById(check);
                 //Log.d("Selected radio button:=",""+radioButton.getText());
+
 
                 apiCalling();
             }
@@ -66,26 +70,35 @@ public class SignUp extends AppCompatActivity
 
     private void apiCalling()
     {
+        //final String gender = null;
+
         RequestQueue requestQueue=Volley.newRequestQueue(this);
         StringRequest stringRequest;
 
         //final String apiAdd="http://45.126.170.217:9000/RegisterUser/insert\n";
-        final String apiAdd="http://188.166.50.216:9000/RegisterUser/insert\n";
+        final String apiAdd="http://188.166.50.216:9000/RegisterUser/insert";
 
         final String authKey="";
+        String gen="";
 
         final String userName=name.getText().toString().trim();
         final String pass=passowrd.getText().toString().trim();
         final String emailId=email.getText().toString().trim();
-        final String gender= (String) radioButton.getText();
-        final String type="N";
-        //Log.d("Gender",gender);
-
-        if (userName.length()==0||pass.length()==0||emailId.length()==0||gender.length()==0|| type.length()==0)
+        if(radioButtonMale.isChecked())
         {
-            Toast.makeText(getApplicationContext(),"All fields are mandatory",Toast.LENGTH_SHORT).show();
+           gen= (String) radioButtonMale.getText();
+            Log.d("Gender",gen);
         }
-        else
+        else if (radioButtonFemale.isChecked())
+        {
+            gen= (String) radioButtonFemale.getText();
+            Log.d("Gender",gen);
+        }
+        final String gender=gen;
+        Log.d("genderIs",gender);
+        final String type="N";
+
+        if (userName.length()!=0&&pass.length()!=0&&emailId.length()!=0&&gender.length()!=0&&type.length()!=0)
             {
             stringRequest = new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>()
             {
@@ -104,7 +117,7 @@ public class SignUp extends AppCompatActivity
                 @Override
                 public void onErrorResponse(VolleyError error)
                 {
-                    //Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                     Log.d("Error is:=>", "" + error);
                 }
             })
@@ -124,5 +137,10 @@ public class SignUp extends AppCompatActivity
             };
             requestQueue.add(stringRequest);
         }
+
+            else
+            {
+            Toast.makeText(getApplicationContext(),"All fields are mandatory",Toast.LENGTH_SHORT).show();
+            }
     }
 }

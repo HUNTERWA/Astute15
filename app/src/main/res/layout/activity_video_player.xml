@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ats.rohit.astutes.VideoPlayer"
-    android:background="@drawable/customground"
+    android:background="@color/white"
     android:orientation="vertical">
+    <!--@drawable/customground-->
+
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youTubePlayerView"
@@ -45,7 +47,7 @@
             android:layout_margin="7dp"
             android:shadowColor="@color/black"
             android:text="Two"
-            android:textColor="@color/white"
+            android:textColor="@color/lightGray"
             android:textColorHighlight="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
