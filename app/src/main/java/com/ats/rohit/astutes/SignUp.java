@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 //import com.ats.rohit.astute.R;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,7 +32,7 @@ import java.util.Map;
 public class SignUp extends AppCompatActivity
 {
     SharedPreferences sharedPreferences;
-    EditText name,passowrd,email;
+    EditText name,passowrd,email,numb;
     Button button;
     RadioGroup radioGroup;
     RadioButton radioButtonMale;
@@ -47,6 +48,7 @@ public class SignUp extends AppCompatActivity
         name=findViewById(R.id.name);
         passowrd=findViewById(R.id.password);
         email=findViewById(R.id.email);
+        numb=findViewById(R.id.numb);
         radioGroup=findViewById(R.id.radioGroup);
         button=findViewById(R.id.signUp);
         radioButtonMale=findViewById(R.id.male);
@@ -84,6 +86,7 @@ public class SignUp extends AppCompatActivity
         final String userName=name.getText().toString().trim();
         final String pass=passowrd.getText().toString().trim();
         final String emailId=email.getText().toString().trim();
+        final String num=numb.getText().toString().trim();
         if(radioButtonMale.isChecked())
         {
            gen= (String) radioButtonMale.getText();
@@ -98,7 +101,7 @@ public class SignUp extends AppCompatActivity
         Log.d("genderIs",gender);
         final String type="N";
 
-        if (userName.length()!=0&&pass.length()!=0&&emailId.length()!=0&&gender.length()!=0&&type.length()!=0)
+        if (userName.length()!=0&&pass.length()!=0&& emailId.length()!=0&&gender.length()!=0&&type.length()!=0&&num.length()==10)
             {
             stringRequest = new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>()
             {
@@ -117,22 +120,38 @@ public class SignUp extends AppCompatActivity
                 @Override
                 public void onErrorResponse(VolleyError error)
                 {
-                    Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-                    Log.d("Error is:=>", "" + error);
+                    if (num.length()!=10)
+                    {
+                        Toast.makeText(getApplicationContext(), "Number must be of 10 digit", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (EmailValidator.getInstance().isValid(emailId)&&num.length()==10)
+                    {
+                        Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Log.d("Error is:=>", "" + error);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Enter right email Id", Toast.LENGTH_SHORT).show();
+                    }
                 }
             })
             {
                 @Override
                 protected Map<String, String> getParams()
                 {
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("name", userName);
-                    map.put("emailId", emailId);
-                    map.put("gender", gender);
-                    map.put("password", pass);
-                    map.put("type", type);
+                    if (EmailValidator.getInstance().isValid(emailId))
+                    {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("name", userName);
+                        map.put("emailId", emailId);
+                        map.put("gender", gender);
+                        map.put("password", pass);
+                        map.put("type", type);
 
-                    return map;
+                        return map;
+                    }
+                    return null;
+
                 }
             };
             requestQueue.add(stringRequest);

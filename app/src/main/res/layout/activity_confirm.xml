@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Confirm"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/cbg">
+
+    <!--android.support.design.widget.TextInputLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/otp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:hint="Enter OTP number"
+            android:inputType="numberSigned"
+            android:shadowColor="@color/black"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="#BDBDBD"
+            android:padding="3dp"
+            android:layout_gravity="center"/>
+
+    </android.support.design.widget.TextInputLayout-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter OTP "
+        android:textSize="17dp"/>
+
+    <com.goodiebag.pinview.Pinview
+        android:id="@+id/otp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:pinLength="4"
+        app:cursorVisible="true"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/newPass"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:hint="Enter new password"
+            android:inputType="textPassword"
+            android:shadowColor="@color/black"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="#BDBDBD"
+            android:padding="3dp"
+            android:layout_gravity="center"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/confirmPassword"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:shadowColor="@color/black"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="#BDBDBD"
+            android:padding="3dp"
+            android:layout_gravity="center"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/bu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Password"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="121dp"
+        android:background="#5433FF"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:padding="4dp"/>
+
+</LinearLayout>

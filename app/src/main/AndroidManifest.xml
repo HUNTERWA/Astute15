@@ -5,10 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <!--uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!--
+uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" /-->
-
+    <uses-permission android:name="android.permission.READ_CONTACTS" /
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,14 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="com.ats.rohit.astutes.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.ats.rohit.astutes.SplashScreen">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,39 +32,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ats.rohit.astutes.Good"
+            android:name=".Good"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ats.rohit.astutes.LogIn"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation">
-
+            android:name=".LogIn"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name="com.ats.rohit.astutes.NotSoGood"
+            android:name=".NotSoGood"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ats.rohit.astutes.Questions"
+            android:name=".Questions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ats.rohit.astutes.SignUp"
+            android:name=".SignUp"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ats.rohit.astutes.Start"
+            android:name=".Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ats.rohit.astutes.VeryGood"
+            android:name=".VeryGood"
             android:screenOrientation="portrait" />
-        <activity android:name="com.ats.rohit.astutes.VideoList" />
-        <activity android:name="com.ats.rohit.astutes.VideoPlayer" />
-        <activity android:name="com.ats.rohit.astutes.ForPaidVideo"></activity>
+        <activity android:name=".VideoList" />
+        <activity android:name=".VideoPlayer" />
+        <activity android:name=".ForPaidVideo" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".Confirm"></activity>
     </application>
 
 </manifest>

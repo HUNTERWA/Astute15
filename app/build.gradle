@@ -6,8 +6,8 @@ android {
         applicationId "com.ats.rohit.astutes"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 6
-        versionName "1.5"
+        versionCode 7
+        versionName "1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,7 +47,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    //implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -64,7 +63,10 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:27.1.1'
     compile 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.facebook.android:facebook-android-sdk:4.32.0'
+    compile 'commons-validator:commons-validator:1.5.1'
+    compile 'com.github.GoodieBag:Pinview:v1.3'
 
 }
 
 //apply plugin: 'com.google.gms.google-services'  this will need google-services.json which we can generate from firebase.
+

@@ -26,6 +26,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.Login;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 /*import com.google.android.gms.auth.api.Auth;
@@ -36,6 +37,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;*/
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -280,68 +282,57 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
 
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
-        StringRequest stringRequest;
+        StringRequest stringRequest=new StringRequest(null,null,null);
 
         final String mailId=emId.getText().toString().trim();
         final String pass=password.getText().toString().trim();
 
-        stringRequest=new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>()
-        {
-            @Override
-            public void onResponse(String response)
-            {
-                Log.d("Response:=>",response);
+        if(EmailValidator.getInstance().isValid(mailId)) {
+            stringRequest = new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d("Response:=>", response);
 
-                //Log.d("token:=>",response.)
-                Boolean code=response.contains("200");
-                if(code==true)
-                {
-                    Toast.makeText(getApplicationContext(),"Sign In successfull",Toast.LENGTH_SHORT).show();
-                    Log.d("Response:=>","true");
-                    Intent intent=new Intent(LogIn.this,Start.class);
-                    startActivity(intent);
-                    finish();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Wrong credential",Toast.LENGTH_SHORT).show();
-                }
+                    //Log.d("token:=>",response.)
+                    Boolean code = response.contains("200");
+                    if (code == true) {
+                        Toast.makeText(getApplicationContext(), "Sign In successfull", Toast.LENGTH_SHORT).show();
+                        Log.d("Response:=>", "true");
+                        Intent intent = new Intent(LogIn.this, Start.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong credential", Toast.LENGTH_SHORT).show();
+                    }
 
-                try
-                {
-                    jsonObject=new JSONObject(response);
-                    key=jsonObject.getString("token");
-                    Log.d("TokenKeyIs",key);
-                    sharedPreferences=getSharedPreferences("USER_INFO",MODE_PRIVATE);
-                    SharedPreferences.Editor editor=sharedPreferences.edit();
-                    editor.putString("TOKEN",key);
-                    editor.apply();
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                }
+                    try {
+                        jsonObject = new JSONObject(response);
+                        key = jsonObject.getString("token");
+                        Log.d("TokenKeyIs", key);
+                        sharedPreferences = getSharedPreferences("USER_INFO", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("TOKEN", key);
+                        editor.apply();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-            }
-        }, new Response.ErrorListener()
-        {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                Toast.makeText(getApplicationContext(),"user does not exist",Toast.LENGTH_SHORT).show();
-                Log.d("Error:=>",""+error);
-                Log.d("mailId\n pass",mailId+"\n"+pass);
-            }
-        })
-        {
-            @Override
-            protected Map<String,String>getParams()
-            {
-                Map<String,String> map=new HashMap<>();
-                map.put("emailId",mailId);
-                map.put("password",pass);
-                return map;
-            }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "user does not exist", Toast.LENGTH_SHORT).show();
+                    Log.d("Error:=>", "" + error);
+                    Log.d("mailId\n pass", mailId + "\n" + pass);
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("emailId", mailId);
+                    map.put("password", pass);
+                    return map;
+                }
 
             /*@Override
             protected Response<String> parseNetworkResponse(NetworkResponse response)
@@ -351,7 +342,8 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
                 Log.d("Token:=>",responseString);
                 return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
             }*/
-        };
+            };
+        }
 
         requestQueue.add(stringRequest);
     }
@@ -361,7 +353,7 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
         if (fResponseCode.contains("responseCode: 200"))
         {
             //Toast.makeText(getApplicationContext(),"response 200",Toast.LENGTH_SHORT).show();
-            final String apiAdd="http://188.166.50.216:9000/RegisterUser/insert\n";
+            final String apiAdd="http://188.166.50.216:9000/RegisterUser/insert";
             RequestQueue requestQueue=Volley.newRequestQueue(this);
             StringRequest stringRequest=new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>() {
                 @Override
@@ -414,5 +406,11 @@ public class LogIn extends AppCompatActivity //implements GoogleApiClient.OnConn
             requestQueue.add(stringRequest);
 
         }
+    }
+
+    public void resetPass(View view)
+    {
+        Intent intent=new Intent(LogIn.this,ForgotPassword.class);
+        startActivity(intent);
     }
 }
