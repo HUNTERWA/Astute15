@@ -45,62 +45,15 @@
         app:pinLength="4"
         app:cursorVisible="true"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:layout_gravity="center">
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/newPass"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:hint="Enter new password"
-            android:inputType="textPassword"
-            android:shadowColor="@color/black"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/white"
-            android:textColorHint="#BDBDBD"
-            android:padding="3dp"
-            android:layout_gravity="center"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:layout_gravity="center">
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/confirmPassword"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:hint="Confirm password"
-            android:inputType="textPassword"
-            android:shadowColor="@color/black"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/white"
-            android:textColorHint="#BDBDBD"
-            android:padding="3dp"
-            android:layout_gravity="center"/>
-
-    </android.support.design.widget.TextInputLayout>
-
     <Button
-        android:id="@+id/bu"
+        android:id="@+id/pinView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset Password"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="121dp"
+        android:onClick="pinView"
+        android:text="OK"
         android:background="#5433FF"
         android:textColor="@color/white"
-        android:shadowColor="@color/black"
-        android:padding="4dp"/>
+        android:textColorHighlight="@color/white"
+        android:shadowColor="@color/black" />
 
 </LinearLayout>

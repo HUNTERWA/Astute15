@@ -26,14 +26,14 @@ public class ForgotPassword extends AppCompatActivity
 
     public void reset(View view)
     {
-        if (editText.length()!=10)
+        /*if (editText.length()!=10)
         {
             Toast.makeText(getApplicationContext(),"Mobile number must be of 10 digit",Toast.LENGTH_SHORT).show();
         }
         else
-        {
+        {*/
             Intent intent=new Intent(ForgotPassword.this,Confirm.class);
             startActivity(intent);
-        }
+        //}
     }
 }

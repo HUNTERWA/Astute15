@@ -101,7 +101,7 @@ public class SignUp extends AppCompatActivity
         Log.d("genderIs",gender);
         final String type="N";
 
-        if (userName.length()!=0&&pass.length()!=0&& emailId.length()!=0&&gender.length()!=0&&type.length()!=0&&num.length()==10)
+        if (userName.length()!=0&&pass.length()!=0&& emailId.length()!=0&&gender.length()!=0&&type.length()!=0)
             {
             stringRequest = new StringRequest(Request.Method.POST, apiAdd, new Response.Listener<String>()
             {
@@ -120,11 +120,11 @@ public class SignUp extends AppCompatActivity
                 @Override
                 public void onErrorResponse(VolleyError error)
                 {
-                    if (num.length()!=10)
+                    /*if (num.length()!=10)
                     {
                         Toast.makeText(getApplicationContext(), "Number must be of 10 digit", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (EmailValidator.getInstance().isValid(emailId)&&num.length()==10)
+                    }*/
+                     if (EmailValidator.getInstance().isValid(emailId)&&num.length()==10)
                     {
                         Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.d("Error is:=>", "" + error);
@@ -150,7 +150,10 @@ public class SignUp extends AppCompatActivity
 
                         return map;
                     }
-                    return null;
+                    else
+                        {
+                        return null;
+                    }
 
                 }
             };

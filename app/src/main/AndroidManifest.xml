@@ -64,8 +64,13 @@ uses-permission android:name="android.permission.GET_ACCOUNTS" />
         <activity android:name=".VideoList" />
         <activity android:name=".VideoPlayer" />
         <activity android:name=".ForPaidVideo" />
-        <activity android:name=".ForgotPassword" />
-        <activity android:name=".Confirm"></activity>
+        <activity
+            android:name=".ForgotPassword"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Confirm"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AfterOtp"></activity>
     </application>
 
 </manifest>

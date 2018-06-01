@@ -133,7 +133,8 @@
             android:layout_height="wrap_content"
             android:text="Female"
             android:layout_margin="23dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:checked="true"/>
 
     </RadioGroup>
 
